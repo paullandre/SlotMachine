@@ -10,11 +10,14 @@ if(isset($_POST) != null)
 	$group = array();
 	
 	for($i = 0; $i < $count; $i++)
-	{
-		//$toCLean[] = explode("_", $data[$i]);
+	{		
+		if(in_array("machine5", $data[$i]))
+		{
+			print $data[$i]['active'] . "\n";
+		}
 	}
 		
 }
-die(print_r($_POST['data']));
+die(print_r($data));
 
 ?>
