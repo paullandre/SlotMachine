@@ -228,7 +228,7 @@
 					}
 					
 					//console.log(this.element[0].id + " " + active);
-					active_array.push(this.element[0].id + "_" + active);
+					active_array.push({ "machine": this.element[0].id, "active": active });
 				}
 				
 				$("#ranomizeButton").click(function(){	
@@ -275,9 +275,7 @@
 					}, 1200);
 					setTimeout(function(){
 						machine15.shuffle(5, onComplete);
-					}, 1200);	
-					
-					console.log(active_array);					
+					}, 1200);					
 					
 					setTimeout(function(){
 						$.ajax({
