@@ -95,9 +95,10 @@
 			</div>
 		</div>
 		<script>
-			$(document).ready(function(){				
-				
-				$(".col-xs-4").css("width","20%");
+			$(document).ready(function()
+			{
+				$(".col-xs-4").css("width","20%");				
+				var active_array = new Array();
 				
 				var machine1 = $("#machine1").slotMachine({
 					active	: 0,
@@ -175,7 +176,7 @@
 					delay	: 500
 				});
 				
-				function onComplete(active){
+				function onComplete(active){					
 					switch(this.element[0].id){
 						case 'machine1':
 							$("#machine1Result").text("Index: "+this.active);							
@@ -226,23 +227,24 @@
 							break;
 					}
 					
-					console.log(this.element[0].id + " " + active);
+					//console.log(this.element[0].id + " " + active);
+					active_array.push(this.element[0].id + "_" + active);
 				}
-
-				$("#ranomizeButton").click(function(){
-
+				
+				$("#ranomizeButton").click(function(){	
+					active_array = new Array();
 					machine1.shuffle(5, onComplete);
 					machine6.shuffle(5, onComplete);
 					machine11.shuffle(5, onComplete);
 
 					setTimeout(function(){
-						machine2.shuffle(5, onComplete);
+						machine2.shuffle(5, onComplete);						
 					}, 300);
-					setTimeout(function(){
-						machine7.shuffle(5, onComplete);
+					setTimeout(function(){						
+						machine7.shuffle(5, onComplete);						
 					}, 300);
-					setTimeout(function(){
-						machine12.shuffle(5, onComplete);
+					setTimeout(function(){						
+						machine12.shuffle(5, onComplete);						
 					}, 300);
 					
 					setTimeout(function(){
@@ -273,7 +275,25 @@
 					}, 1200);
 					setTimeout(function(){
 						machine15.shuffle(5, onComplete);
-					}, 1200);									
+					}, 1200);	
+					
+					console.log(active_array);					
+					
+					setTimeout(function(){
+						$.ajax({
+                        url: "http://localhost/SlotMachine/backend/controller/getAjax.php",                        
+                        type: "POST",
+                        data: {"data": active_array},
+                        success: function(msg)
+                        {
+                            console.log(msg);
+                        },
+                        error:function(msg)
+                        {
+                            alert("Failed: " + msg.status + ": " + msg.statusText);
+                        }
+                    });
+					}, 4500);
 				})
 			});
 		</script		
