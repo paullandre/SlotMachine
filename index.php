@@ -277,7 +277,8 @@
 						machine15.shuffle(5, onComplete);
 					}, 1200);					
 					
-					setTimeout(function(){
+					setTimeout(function()
+					{
 						$.ajax({
                         url: "http://localhost/SlotMachine/backend/controller/getAjax.php",                        
                         type: "POST",
