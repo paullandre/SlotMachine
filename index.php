@@ -102,7 +102,7 @@
 				
 				var machine1 = $("#machine1").slotMachine({
 					active	: 0,
-					delay	: 500
+					delay	: 500,					
 				});
 
 				var machine2 = $("#machine2").slotMachine({
@@ -118,7 +118,8 @@
 				
 				var machine4 = $("#machine4").slotMachine({
 					active	: 3,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine5 = $("#machine5").slotMachine({
@@ -133,7 +134,8 @@
 					
 				var machine7 = $("#machine7").slotMachine({
 					active	: 2,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});	
 				
 				var machine8 = $("#machine8").slotMachine({
@@ -143,7 +145,8 @@
 				
 				var machine9 = $("#machine9").slotMachine({
 					active	: 1,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});	
 				
 				var machine10 = $("#machine10").slotMachine({
@@ -158,7 +161,8 @@
 				
 				var machine12 = $("#machine12").slotMachine({
 					active	: 4,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine13 = $("#machine13").slotMachine({
@@ -168,7 +172,8 @@
 				
 				var machine14 = $("#machine14").slotMachine({
 					active	: 0,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine15 = $("#machine15").slotMachine({
