@@ -102,7 +102,7 @@
 				
 				var machine1 = $("#machine1").slotMachine({
 					active	: 0,
-					delay	: 500
+					delay	: 500,					
 				});
 
 				var machine2 = $("#machine2").slotMachine({
@@ -118,7 +118,8 @@
 				
 				var machine4 = $("#machine4").slotMachine({
 					active	: 3,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine5 = $("#machine5").slotMachine({
@@ -133,7 +134,8 @@
 					
 				var machine7 = $("#machine7").slotMachine({
 					active	: 2,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});	
 				
 				var machine8 = $("#machine8").slotMachine({
@@ -143,7 +145,8 @@
 				
 				var machine9 = $("#machine9").slotMachine({
 					active	: 1,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});	
 				
 				var machine10 = $("#machine10").slotMachine({
@@ -158,7 +161,8 @@
 				
 				var machine12 = $("#machine12").slotMachine({
 					active	: 4,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine13 = $("#machine13").slotMachine({
@@ -168,7 +172,8 @@
 				
 				var machine14 = $("#machine14").slotMachine({
 					active	: 0,
-					delay	: 500
+					delay	: 500,
+					direction: 'down'
 				});
 				
 				var machine15 = $("#machine15").slotMachine({
@@ -239,43 +244,43 @@
 
 					setTimeout(function(){
 						machine2.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					setTimeout(function(){						
 						machine7.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					setTimeout(function(){						
 						machine12.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					
 					setTimeout(function(){
 						machine3.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					setTimeout(function(){
 						machine8.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					setTimeout(function(){
 						machine13.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					
 					setTimeout(function(){
 						machine4.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					setTimeout(function(){
 						machine9.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					setTimeout(function(){
 						machine14.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					
 					setTimeout(function(){
 						machine5.shuffle(5, onComplete);
-					}, 1200);
+					}, 650);
 					setTimeout(function(){
 						machine10.shuffle(5, onComplete);
-					}, 1200);
+					}, 650);
 					setTimeout(function(){
 						machine15.shuffle(5, onComplete);
-					}, 1200);					
+					}, 650);					
 					
 					setTimeout(function()
 					{
@@ -292,7 +297,7 @@
                             alert("Failed: " + msg.status + ": " + msg.statusText);
                         }
                     });
-					}, 4500);
+					}, 4000);
 				})
 			});
 		</script		
