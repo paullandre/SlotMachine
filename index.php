@@ -27,14 +27,18 @@
 					{
 						?>
 						<div class="col-xs-4">
-							<div>
+							<div class="circle">
 								<div id="machine<?php echo $i; ?>" class="randomizeMachine">
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
 									<div><img src="img/slot3.png" /></div>							
 									<div><img src="img/slot4.png" /></div>								
 									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>								
+									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot7.png" /></div>
+									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot9.png" /></div>
+									<div><img src="img/slot10.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -49,14 +53,18 @@
 					{
 						?>
 						<div class="col-xs-4">
-							<div>
+							<div class="circle">
 								<div id="machine<?php echo $i; ?>" class="randomizeMachine">
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
 									<div><img src="img/slot3.png" /></div>							
 									<div><img src="img/slot4.png" /></div>								
 									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>								
+									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot7.png" /></div>
+									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot9.png" /></div>
+									<div><img src="img/slot10.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -71,14 +79,18 @@
 					{
 						?>
 						<div class="col-xs-4">
-							<div>
+							<div class="circle">
 								<div id="machine<?php echo $i; ?>" class="randomizeMachine">
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
 									<div><img src="img/slot3.png" /></div>							
 									<div><img src="img/slot4.png" /></div>								
 									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>								
+									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot7.png" /></div>
+									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot9.png" /></div>
+									<div><img src="img/slot10.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -96,7 +108,23 @@
 		</div>
 		<script>
 			$(document).ready(function()
-			{
+			{			
+				var _object = 
+                {
+                    images: { 
+								0 : { image : 'slot1.png', active : 0 },
+								1 : { image : 'slot2.png', active : 1 },
+								2 : { image : 'slot3.png', active : 2 },
+								3 : { image : 'slot4.png', active : 3 },
+								4 : { image : 'slot5.png', active : 4 },
+								5 : { image : 'slot6.png', active : 5 },
+								6 : { image : 'slot7.png', active : 6 },
+								7 : { image : 'slot8.png', active : 7 },
+								8 : { image : 'slot9.png', active : 8 },
+								9 : { image : 'slot10.png', active : 9 },
+							}
+				};
+				
 				$(".col-xs-4").css("width","20%");				
 				var active_array = new Array();
 				
@@ -237,6 +265,8 @@
 				}
 				
 				$("#ranomizeButton").click(function(){	
+					$(".circle").css('background', 'white');
+				
 					active_array = new Array();
 					machine1.shuffle(5, onComplete);
 					machine6.shuffle(5, onComplete);
@@ -244,43 +274,43 @@
 
 					setTimeout(function(){
 						machine2.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					setTimeout(function(){						
 						machine7.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					setTimeout(function(){						
 						machine12.shuffle(5, onComplete);						
-					}, 300);
+					}, 200);
 					
 					setTimeout(function(){
 						machine3.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					setTimeout(function(){
 						machine8.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					setTimeout(function(){
 						machine13.shuffle(5, onComplete);
-					}, 600);
+					}, 350);
 					
 					setTimeout(function(){
 						machine4.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					setTimeout(function(){
 						machine9.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					setTimeout(function(){
 						machine14.shuffle(5, onComplete);
-					}, 900);
+					}, 500);
 					
 					setTimeout(function(){
 						machine5.shuffle(5, onComplete);
-					}, 1200);
+					}, 650);
 					setTimeout(function(){
 						machine10.shuffle(5, onComplete);
-					}, 1200);
+					}, 650);
 					setTimeout(function(){
 						machine15.shuffle(5, onComplete);
-					}, 1200);					
+					}, 650);					
 					
 					setTimeout(function()
 					{
@@ -290,14 +320,23 @@
                         data: {"data": active_array},
                         success: function(msg)
                         {
-                            console.log(msg);
+                            var data = JSON.parse(msg);
+								
+							if(data.win.length < 1) return false;
+							
+							for(var i = 0; i < data.win.length; i++)
+							{								
+								$('#'+data.win[i]).parent(".circle").css('background', 'green');
+								$('#'+data.win[i]).parent(".circle").css('transition', 'background 3s linear');
+							}
+							console.log(data.win);
                         },
                         error:function(msg)
                         {
                             alert("Failed: " + msg.status + ": " + msg.statusText);
                         }
                     });
-					}, 4500);
+					}, 4000);
 				})
 			});
 		</script		
