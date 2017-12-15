@@ -343,8 +343,6 @@
 									//$('#'+result.win[j][i]).parent(".circle").css('transition', 'background 3s linear');								
 								}
 							}
-							
-							//console.log(result);
                         },
                         error:function(msg)
                         {
