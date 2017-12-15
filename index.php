@@ -319,17 +319,32 @@
                         type: "POST",
                         data: {"data": active_array},
                         success: function(msg)
-                        {
+                       {							
                             var data = JSON.parse(msg);
-								
-							if(data.win.length < 1) return false;
+							var result = data.result;
+							var counter = Object.keys(result).length;
 							
-							for(var i = 0; i < data.win.length; i++)
-							{								
-								$('#'+data.win[i]).parent(".circle").css('background', 'green');
-								$('#'+data.win[i]).parent(".circle").css('transition', 'background 3s linear');
+							for(var j = 1; j <= 3; j++)
+							{	
+								for(var i = 0; i < counter; i++)
+								{		
+									if(result['win'+[j][i]] == null || result['win'+[j][i]] == "")
+									{
+										
+									}
+									else
+									{
+										console.log(result['win'+[j][i]]);
+										$('#'+result['win'+[j][i]]).parent(".circle").css('background', 'green');
+									    $('#'+result['win'+[j][i]]).parent(".circle").css('transition', 'background 3s linear');
+									}
+									
+									//$('#'+result.win[j][i]).parent(".circle").css('background', 'green');
+									//$('#'+result.win[j][i]).parent(".circle").css('transition', 'background 3s linear');								
+								}
 							}
-							console.log(data.win);
+							
+							//console.log(result);
                         },
                         error:function(msg)
                         {
