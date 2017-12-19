@@ -32,13 +32,14 @@
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
 									<div><img src="img/slot3.png" /></div>							
-									<div><img src="img/slot4.png" /></div>								
-									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot4.jpg" /></div>								
+									<div><img src="img/slot5.jpg" /></div>								
+									<div><img src="img/slot6.jpg" /></div>
 									<div><img src="img/slot7.png" /></div>
-									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot8.jpg" /></div>
 									<div><img src="img/slot9.png" /></div>
 									<div><img src="img/slot10.jpg" /></div>
+									<div><img src="img/WILD.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -58,13 +59,14 @@
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
 									<div><img src="img/slot3.png" /></div>							
-									<div><img src="img/slot4.png" /></div>								
-									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot4.jpg" /></div>								
+									<div><img src="img/slot5.jpg" /></div>								
+									<div><img src="img/slot6.jpg" /></div>
 									<div><img src="img/slot7.png" /></div>
-									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot8.jpg" /></div>
 									<div><img src="img/slot9.png" /></div>
 									<div><img src="img/slot10.jpg" /></div>
+									<div><img src="img/WILD.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -83,14 +85,15 @@
 								<div id="machine<?php echo $i; ?>" class="randomizeMachine">
 									<div><img src="img/slot1.png" /></div>								
 									<div><img src="img/slot2.png" /></div>								
-									<div><img src="img/slot3.png" /></div>							
-									<div><img src="img/slot4.png" /></div>								
-									<div><img src="img/slot5.png" /></div>								
-									<div><img src="img/slot6.png" /></div>
+									<div><img src="img/slot3.png" /></div>				
+									<div><img src="img/slot4.jpg" /></div>								
+									<div><img src="img/slot5.jpg" /></div>								
+									<div><img src="img/slot6.jpg" /></div>
 									<div><img src="img/slot7.png" /></div>
-									<div><img src="img/slot8.png" /></div>
+									<div><img src="img/slot8.jpg" /></div>
 									<div><img src="img/slot9.png" /></div>
 									<div><img src="img/slot10.jpg" /></div>
+									<div><img src="img/WILD.jpg" /></div>
 								</div>
 							</div>
 						</div>
@@ -319,7 +322,7 @@
                         type: "POST",
                         data: {"data": active_array},
                         success: function(msg)
-                       {							
+                       {
                             var data = JSON.parse(msg);
 							var result = data.result;
 							var counter = Object.keys(result).length;
@@ -328,20 +331,20 @@
 							{	
 								for(var i = 0; i < counter; i++)
 								{		
-									if(result['win'+[j][i]] == null || result['win'+[j][i]] == "")
-									{
-										
-									}
+									if(result['win'+[j][i]] == null || result['win'+[j][i]] == ""){	}
 									else
 									{
-										console.log(result['win'+[j][i]]);
-										$('#'+result['win'+[j][i]]).parent(".circle").css('background', 'green');
-									    $('#'+result['win'+[j][i]]).parent(".circle").css('transition', 'background 3s linear');
+										//console.log(result['win'+[j][i]].length);
+										for(var x = 0; x < result['win'+[j][i]].length; x++)
+										{
+											console.log(result['win'+[j][i]][x]);
+											
+											$('#'+result['win'+[j][i]][x]).parent(".circle").css('background', 'green');
+											$('#'+result['win'+[j][i]][x]).parent(".circle").css('transition', 'background 3s linear');
+										}
 									}
-									
-									//$('#'+result.win[j][i]).parent(".circle").css('background', 'green');
-									//$('#'+result.win[j][i]).parent(".circle").css('transition', 'background 3s linear');								
 								}
+							
 							}
                         },
                         error:function(msg)
