@@ -1,5 +1,13 @@
 <?php
 
+$images = array();
+for($x = 1; $x <= 10; $x++)
+{
+	array_push($images, array("slot" => "slot$x", "images" => $images);
+}
+
+die(print_r($images);
+
 if(isset($_POST) != null)
 {
 	$map = array();
@@ -39,12 +47,20 @@ if(isset($_POST) != null)
 		{			
 			array_push($map2, $data[$i]['machine'] . "_" . $data[$i]['active']);
 			array_push($group2, $data[$i]['active']);
+			if($data[$i]['active'] == 10)
+			{
+				array_push($wild, $data[$i]['machine']);
+			}
 		}
 		else if($data[$i]['machine'] == "machine11" || $data[$i]['machine'] == "machine12" || $data[$i]['machine'] == "machine13" 
 			|| $data[$i]['machine'] == "machine14" || $data[$i]['machine'] == "machine15")
 		{			
 			array_push($map3, $data[$i]['machine'] . "_" . $data[$i]['active']);			
 			array_push($group3, $data[$i]['active']);
+			if($data[$i]['active'] == 10)
+			{
+				array_push($wild, $data[$i]['machine']);
+			}
 		}
 		
 		/* PATTERN 1 */

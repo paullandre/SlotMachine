@@ -327,7 +327,7 @@
 							var result = data.result;													
 							var counter = Object.keys(result).length;
 							
-							console.log(result);
+							console.log(msg);
 							
 							for(var j = 1; j <= 3; j++)
 							{	
