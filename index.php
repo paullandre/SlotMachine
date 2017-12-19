@@ -322,10 +322,12 @@
                         type: "POST",
                         data: {"data": active_array},
                         success: function(msg)
-                       {
+                       {						   
                             var data = JSON.parse(msg);
-							var result = data.result;
+							var result = data.result;													
 							var counter = Object.keys(result).length;
+							
+							console.log(result);
 							
 							for(var j = 1; j <= 3; j++)
 							{	
@@ -334,10 +336,10 @@
 									if(result['win'+[j][i]] == null || result['win'+[j][i]] == ""){	}
 									else
 									{
-										//console.log(result['win'+[j][i]].length);
+										console.log(result['win'+[j][i]]);
 										for(var x = 0; x < result['win'+[j][i]].length; x++)
 										{
-											console.log(result['win'+[j][i]][x]);
+											//console.log(result['win'+[j][i]][x]);
 											
 											$('#'+result['win'+[j][i]][x]).parent(".circle").css('background', 'green');
 											$('#'+result['win'+[j][i]][x]).parent(".circle").css('transition', 'background 3s linear');

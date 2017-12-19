@@ -8,10 +8,19 @@ if(isset($_POST) != null)
 	$count = count($data);	
 	$group1 = array();
 	$group2 = array();
-	$group3 = array();
+	$group3 = array();	
 	$map1 = array();
 	$map2 = array();
 	$map3 = array();
+	
+	$pattern1 = array();
+	$pattern1 = array();
+	$pattern1 = array();
+	$mp1 = array();
+	$mp2 = array();
+	$mp3 = array();
+	
+	$wild = array();
 	
 	for($i = 0; $i < $count; $i++)
 	{			
@@ -20,6 +29,10 @@ if(isset($_POST) != null)
 		{			
 			array_push($map1, $data[$i]['machine'] . "_" . $data[$i]['active']);
 			array_push($group1, $data[$i]['active']);
+			if($data[$i]['active'] == 10)
+			{
+				array_push($wild, $data[$i]['machine']);
+			}
 		}
 		else if($data[$i]['machine'] == "machine6" || $data[$i]['machine'] == "machine7" || $data[$i]['machine'] == "machine8" 
 			|| $data[$i]['machine'] == "machine9" || $data[$i]['machine'] == "machine10")
@@ -32,6 +45,13 @@ if(isset($_POST) != null)
 		{			
 			array_push($map3, $data[$i]['machine'] . "_" . $data[$i]['active']);			
 			array_push($group3, $data[$i]['active']);
+		}
+		
+		/* PATTERN 1 */
+		if($data[$i]['machine'] == "machine1" || $data[$i]['machine'] == "machine7" || $data[$i]['machine'] == "machine13")
+		{			
+			array_push($mp1, $data[$i]['machine'] . "_" . $data[$i]['active']);
+			array_push($pattern1, $data[$i]['active']);
 		}
 	}
 }
@@ -61,22 +81,47 @@ for($i = 1; $i <= 3; $i++)
 
 die(print_r(json_encode(array("result" => array("win1" => $win1, "win2" => $win2, "win3" => $win3)))));
 */
+/* PATTERN 1 */
+$patternDup1 = array_count_values($pattern1);
+$patternWin1 = array();
+
+//die(print_r($mp1));
+
+foreach($patternDup1 as $k => $v)
+{	
+	if($v > 2)
+	{			
+		foreach($mp1 as $key => $value)		
+		{
+			$toClean = explode("_", $value);
+			$machine = $toClean[0];
+			$image   = $toClean[1];
+			
+			if($k == $image)
+			{				
+				array_push($patternWin1, $machine);
+			}
+		}
+	}
+}
+
+//die(print_r(json_encode(array("result" => array("pattern1" => $pattern1)))));
 
 /* GROUP 1 */
 $dup1 = array_count_values($group1);
 $win1 = array();
 
 foreach($dup1 as $k => $v)
-{
+{	
 	if($v > 2)
 	{			
 		foreach($map1 as $key => $value)		
 		{
 			$toClean = explode("_", $value);
 			$machine = $toClean[0];
-			$gun	 = $toClean[1];
+			$image   = $toClean[1];
 			
-			if($k == $gun)
+			if($k == $image)
 			{				
 				array_push($win1, $machine);
 			}
@@ -95,10 +140,12 @@ foreach($dup2 as $k => $v)
 		foreach($map2 as $key => $value)		
 		{
 			$toClean = explode("_", $value);
+			$machine = $toClean[0];
+			$image   = $toClean[1];
 			
-			if($k == $toClean[1])
+			if($k == $image)
 			{				
-				array_push($win2, $toClean[0]);
+				array_push($win2, $machine);
 			}
 		}
 	}
@@ -115,16 +162,18 @@ foreach($dup3 as $k => $v)
 		foreach($map3 as $key => $value)		
 		{
 			$toClean = explode("_", $value);
+			$machine = $toClean[0];
+			$image	= $toClean[1];
 			
-			if($k == $toClean[1])
+			if($k == $image)
 			{				
-				array_push($win3, $toClean[0]);
+				array_push($win3, $machine);
 			}
 		}
 	}
 }
 
-print_r(json_encode(array("result" => array("win1" => $win1, "win2" => $win2, "win3" => $win3))));
+print_r(json_encode(array("result" => array("win1" => $win1, "win2" => $win2, "win3" => $win3, "pattern1" => $patternWin1, "wild" => $wild))));
 
 die;
 
